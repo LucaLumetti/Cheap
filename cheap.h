@@ -135,24 +135,24 @@
   }                                                                           \
                                                                               \
   void heap_min_##NAME##_moveDown(TYPE *v, unsigned i, size_t size) {         \
-    unsigned l, r, smallest = i;                                               \
+    unsigned l, r, smallest = i;                                              \
     bool done;                                                                \
     do {                                                                      \
       done = true;                                                            \
       l = heap_min_##NAME##_left(i);                                          \
       r = heap_min_##NAME##_right(i);                                         \
                                                                               \
-      if((l <= size) && (CMPFN)(&v[l], &v[smallest]) < 0) {                    \
-        smallest = l;                                                          \
+      if((l <= size) && (CMPFN)(&v[l], &v[smallest]) < 0) {                   \
+        smallest = l;                                                         \
       }                                                                       \
                                                                               \
-      if((r <= size) && (CMPFN)(&v[r], &v[smallest]) < 0) {                    \
-        smallest = r;                                                          \
+      if((r <= size) && (CMPFN)(&v[r], &v[smallest]) < 0) {                   \
+        smallest = r;                                                         \
       }                                                                       \
                                                                               \
-      if(smallest != i) {                                                      \
-        swap(v[i], v[largest]);                                               \
-        i = smallest;                                                          \
+      if(smallest != i) {                                                     \
+        swap(v[i], v[smallest]);                                              \
+        i = smallest;                                                         \
         done = false;                                                         \
       }                                                                       \
     } while(!done);                                                           \
